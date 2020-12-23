@@ -36,6 +36,7 @@ app.get('/weather/city', (req, res) => {
       res.send(response);
     })
     .catch(function (err) {
+      console.log(err);
       res.status(500).send({ error: 'Server error' });
     });
 });
@@ -51,6 +52,7 @@ app.get('/weather/coordinates', (req, res) => {
       res.send(response);
     })
     .catch(function (err) {
+      console.log(err);
       res.status(500).send({ error: 'Server error' });
     });
 });
@@ -66,6 +68,7 @@ app.get('/favourites', (request, response) => {
 app.post('/favourites', (request, response) => {
   connection.query(`insert into favourites(name) values('${request.body.name}')`, function (err, rows, fields) {
     if (err) {
+      console.log(err);
       response.status(500).send();
     } else {
       console.log('insertID: ', rows.insertId);
@@ -83,7 +86,7 @@ app.delete('/favourites', (request, response) => {
 
 app.listen(port, (err) => {
   if (err) {
-    return console.log('something bad happened', err);
+    return console.log('fatal error', err);
   }
   console.log(`server is listening on ${port}`);
 });
