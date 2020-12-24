@@ -37,7 +37,7 @@ app.get('/weather/city', (req, res) => {
     })
     .catch(function (err) {
       console.log(err);
-      res.status(500).send({ error: 'Server error' });
+      res.status(err.statusCode || 500).send({ error: 'Server error', code: err.statusCode || 500 });
     });
 });
 
@@ -53,7 +53,7 @@ app.get('/weather/coordinates', (req, res) => {
     })
     .catch(function (err) {
       console.log(err);
-      res.status(500).send({ error: 'Server error' });
+      res.status(err.statusCode || 500).send({ error: 'Server error', code: err.statusCode || 500 });
     });
 });
 
